@@ -22,10 +22,21 @@ public class ThanhvienFacade extends AbstractFacade<Thanhvien> implements Thanhv
         super(Thanhvien.class);
     }
 
+    //Get All Thanh Vien
     public List findTatcaThanhvien() {
         Query query = em.createNamedQuery("Thanhvien.findAll",Thanhvien.class);
         List thanhvien = query.getResultList();
         return thanhvien;
     }
+    
+    //Find dia chi by email
+    public List<Thanhvien> getDiaChi(String email){
+        List<Thanhvien> dsthanhvien=null;
+        Query qthanhvien=em.createQuery("SELECT diachi FROM Thanhvien t WHERE t.email = :email");
+        qthanhvien.setParameter("email", email);
+        dsthanhvien=qthanhvien.getResultList();
+        return dsthanhvien;
+    }
+
 
 }
