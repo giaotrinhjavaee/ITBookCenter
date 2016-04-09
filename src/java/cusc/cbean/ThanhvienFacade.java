@@ -23,6 +23,7 @@ public class ThanhvienFacade extends AbstractFacade<Thanhvien> implements Thanhv
     }
 
     //Get All Thanh Vien
+    @Override
     public List findTatcaThanhvien() {
         Query query = em.createNamedQuery("Thanhvien.findAll",Thanhvien.class);
         List thanhvien = query.getResultList();
@@ -30,6 +31,7 @@ public class ThanhvienFacade extends AbstractFacade<Thanhvien> implements Thanhv
     }
     
     //Find dia chi by email
+    @Override
     public List getDiaChi(String email){
         Query qthanhvien=em.createQuery("SELECT diachi FROM Thanhvien t WHERE t.email = :email",Thanhvien.class);
         qthanhvien.setParameter("email", email);
@@ -37,5 +39,11 @@ public class ThanhvienFacade extends AbstractFacade<Thanhvien> implements Thanhv
         return dsthanhvien;
     }
 
-
+    @Override
+    public Thanhvien findThanhVienbyEmail(String pemail){
+        Query query=em.createNamedQuery("Thanhvien.findByEmail",Thanhvien.class);
+        query.setParameter("email", pemail);
+        Thanhvien thanhvien=(Thanhvien)query.getSingleResult();
+        return thanhvien;        
+    }    
 }
