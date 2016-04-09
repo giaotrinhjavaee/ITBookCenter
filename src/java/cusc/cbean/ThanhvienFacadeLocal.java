@@ -30,5 +30,11 @@ public interface ThanhvienFacadeLocal {
     List<Thanhvien> findRange(int[] range);
 
     int count();
+
+    public List findTatcaThanhvien();
+
+    public List findDiaChibyEmail(String email);
+
+    public Thanhvien findThanhVienbyEmail(String pemail);
     
 }
