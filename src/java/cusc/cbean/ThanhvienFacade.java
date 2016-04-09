@@ -30,11 +30,10 @@ public class ThanhvienFacade extends AbstractFacade<Thanhvien> implements Thanhv
     }
     
     //Find dia chi by email
-    public List<Thanhvien> getDiaChi(String email){
-        List<Thanhvien> dsthanhvien=null;
-        Query qthanhvien=em.createQuery("SELECT diachi FROM Thanhvien t WHERE t.email = :email");
+    public List getDiaChi(String email){
+        Query qthanhvien=em.createQuery("SELECT diachi FROM Thanhvien t WHERE t.email = :email",Thanhvien.class);
         qthanhvien.setParameter("email", email);
-        dsthanhvien=qthanhvien.getResultList();
+        List dsthanhvien=qthanhvien.getResultList();
         return dsthanhvien;
     }
 
